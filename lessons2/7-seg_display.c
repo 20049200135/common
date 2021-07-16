@@ -36,7 +36,7 @@ void loop()
     delay(400);
     switch(x)
     {
-      case 0:
+      case 0 :
                           
              digitalWrite(12,HIGH);
              digitalWrite(13,HIGH);
@@ -45,12 +45,12 @@ void loop()
              digitalWrite(6,HIGH);
              digitalWrite(7,HIGH);
       break;
-      case 1:
+      case 1 :
       
              digitalWrite(13,HIGH);
              digitalWrite(4,HIGH);
       break;
-      case 2:
+      case 2 :
      
              digitalWrite(13,HIGH);
              digitalWrite(12,HIGH);
@@ -58,7 +58,7 @@ void loop()
              digitalWrite(6,HIGH);
              digitalWrite(7,HIGH);
       break;
-      case 3:
+      case 3 :
       
              digitalWrite(13,HIGH);
              digitalWrite(12,HIGH);
@@ -66,21 +66,21 @@ void loop()
              digitalWrite(6,HIGH);
              digitalWrite(4,HIGH);
       break;
-      case 4:
+      case 4 :
       
              digitalWrite(13,HIGH);
              digitalWrite(4,HIGH);
              digitalWrite(9,HIGH);
              digitalWrite(10,HIGH);
       break;
-      case 5:
+      case 5 :
              digitalWrite(9,HIGH);
              digitalWrite(12,HIGH);
              digitalWrite(10,HIGH);
              digitalWrite(6,HIGH);
              digitalWrite(4,HIGH);
       break;
-      case 6:
+      case 6 :
       
              digitalWrite(9,HIGH);
              digitalWrite(12,HIGH);
@@ -89,14 +89,14 @@ void loop()
              digitalWrite(10,HIGH);
              digitalWrite(7,HIGH);
       break;
-      case 7:
+      case 7 :
                           
              digitalWrite(13,HIGH);
              digitalWrite(12,HIGH);
              digitalWrite(4,HIGH);
              
       break;
-      case 8:
+      case 8 :
       
              digitalWrite(13,HIGH);
              digitalWrite(12,HIGH);
@@ -106,6 +106,13 @@ void loop()
              digitalWrite(6,HIGH);
              digitalWrite(7,HIGH);
       break;
+      case 9 : 
+             digitalWrite(13,HIGH);
+             digitalWrite(12,HIGH);
+             digitalWrite(10,HIGH);
+             digitalWrite(9,HIGH);
+             digitalWrite(4,HIGH);
+             digitalWrite(6,HIGH);
     }
   }
 } 
