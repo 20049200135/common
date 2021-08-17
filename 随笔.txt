@@ -1,0 +1,154 @@
+static（全局/局部） 静态变量
+static int i；
+1. 初始化为0；
+2.局部静态变量离开作用域时，并没有被销毁.
+******************************************************************************************
+const
+const int i=8;
+1.定义整形i；且i不允许被修改(防止变量被误改)。
+例：void f(const int i){i=10;//error}编译器会知道i是一个常量，不能修改。
+2.与宏定义相比只进行一次内存分配
+例：
+{
+       #difine PI 3.14  //常量宏
+       const double pi=3.14;
+       double i=pi;  //此时为pi分配内存，此后不再分配。
+       double I=PI; //编译期间进行宏替换，分配内存
+       double j=pi; //没有内存再分配
+       double J=PI; //再进行宏替换，又一次进行内存分配
+}
+******************************************************************************************
+#ifndef.........#endif
+1.在多人参与的项目中 ， 若整个代码中没有进行宏定义，则进行........ 中的操作
+一般在.h 文件中
+2.Adurino中的库一般包含三个文件  *.c   *.h  *.txt  。其中*.txt 文件是 ”实现规定关键字的“
+*****************************************************************************************
+#undef
+例：
+
+       #include<iostream>
+       using namespace std
+       
+       int main()
+       {
+              #define POS 10
+              cout<<POS<<endl;
+              #undef POS
+              cout<<POS<<endl;
+               return 0; 
+       } 
+
+//会显示 cout<<POS<<endl;报错，就是#undef起的作用，
+当用完一个宏，比如POS，不希望下面的代码再用到POS那么就可以#undef它。
+********************************************************************************************
+init_.parseInt
+
+
+
+
+
+
+
+******************************************************************************************************888
+一. 串口设置
+1. Serial.begin();
+语法：Serial.begin(speed);
+Serial.begin(speed,config);
+speed:波特率，一般取300，1200，2400，4800，9600，14400，19200，28800，38400，57600，115200
+config：设置数据位、校验位和停止位。
+例如：Seria.begin(speed,Seial_8N1);
+         8表示8个数据位，N表示没有校验，1表示有一个停止位。
+2. Serial.end()；
+表示不允许使用串口传输，开发板上有关串口的引脚可以当成普通IO口使用
+*******************************************************************************************************8
+二.  清空串口缓存
+1. Serial.flush();
+*******************************************************************************************88
+三. 串口输出
+Serial.print();
+语法: Serial.print(val,format);
+val: 打印的值；
+format：输出数据格式（整数类型和浮点型的小数点位数）
+整数类型
+BIN: 二进制
+OTC：八进制
+DEC：十进制
+HEX：十六进制
+Serial.print(1.2345,1)得到1.2
+Serial.print('N');字符
+Serial.print("Hello world !")字符串
+2. Serial.println();
+每次输出，会换行，
+其他用法同Serial.print();
+
+*******************************************************************************************8
+四. 读取串口数据
+1.  Serial.SerialEvent(语句);
+串口准备好时，调用该函数。
+2.  while(Serial.read()>=0){}
+因为Serial.read()函数读取串口缓存中的一个字符，并删除已读字符，因此可以用这个代码来清空串口缓存
+3.   Serial.available();
+判断串口缓冲器的状态函数
+返回值：缓存区的可读字节数目；
+通常用delay(100)以保证串口字符接受完毕
+4.  Serial.read();
+返回串口的第一个可读字节
+若没有数据，则返回值为-1；
+5.  Serial.peek();
+读取串口缓存中一个字节的数据（字符型），但是不删除缓存
+因此，连续调用peek()函数，返回的是同一个值，而使用read()；则返回下一个字符
+6.  Serial.readBytes(buffer,length);
+从串口读取指定长度length的字符缓存到数组buffer中
+buffer：缓存变量
+length：设定的读取长度
+7.  Serial.readBytesUntil(character,buffer,length);
+从串口读取指定长度到buffer，当遇到字符character时停止
+8.  Serial.readString();
+从串口缓存区读取全部数据到一个字符串变量
+首先定义字符串变量String   comdata = ”“；
+在循环中将comdata变量复位
+例：
+String comdata = "";
+void set up()
+{
+      Serial.begin(14400);
+       while(Serial.read()>=0){}
+}
+void loop()
+{
+      if(Serial.available()>0)
+      {
+             delay(100);
+             comdata = Serial.readString();
+             Serial.print("Serial.readString : ")
+             Serial.printlln(comdata);
+      }
+      comdata = "";     
+}
+9.  Serial.readStringUntil();
+语法：Serial.readStringUntil(terminator) 
+参数：terminator;终止字符（char型） 
+10. Serial.parseFloat();
+返回串口缓存区一个有效浮点型数据，其他类型数据将被跳过。
+11. Serial.parseInt();
+从串口读取一个有效整数 
+Serial.parseInt(char skipChar);
+skipChar,用于在搜索中跳过指定字符
+12. Serial.find();
+从串口缓存区读取数据，寻找目标字符串target
+语法：char target[] = "目标字符串"；
+13. Serial.find(target);
+返回：找到目标字符串返回真，否则为假。
+14. Serial.findUntil(target,terminal);
+
+*************************************************************************************8
+五. 向串口写数据
+Serial.write();
+语法: Serial.write(val);   //val:字节
+Serial.write(str);   //str: 一串字节
+Serial.write(buf,len);   //buf: 字节数组     //len:buf的长度
+返回值：字节长度
+
+*********************************************************************************************88
+pulseIn(pin, HIGH/LOW);
+记录高低电平时间
