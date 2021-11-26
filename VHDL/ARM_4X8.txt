@@ -1,0 +1,50 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+ENTITY ram16x8 IS           --change for 4x8
+ PORT(address : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+ csbar, oebar, webar : IN STD_LOGIC;
+ data : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+ data1 : OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
+END ram16x8;
+ARCHITECTURE version1 OF ram16x8 IS
+ 
+BEGIN
+	PROCESS(address, csbar, oebar, webar, data)
+		TYPE ram_array IS ARRAY (0 TO 3) OF BIT_VECTOR(7 DOWNTO 0);
+		VARIABLE index : INTEGER := 0;
+		VARIABLE ram_store : ram_array;
+		BEGIN
+		index := 0;
+			IF csbar = '0' THEN
+ --calculate address as an integer
+				
+				if(address = "00")then 
+				index :=0;
+				elsif(address = "01")then
+				index :=1;
+				elsif(address = "10")then
+				index :=2;
+				elsif(address = "11")then
+				index :=3;
+				end if;
+				
+ 				--FOR i IN address'RANGE LOOP
+				--	IF address(i) = '1' THEN
+				--		index := index + 2**i;
+				--	END IF;
+				--END LOOP;
+				IF webar'event and webar = '1' THEN
+ --write to ram on rising edge of write pulse
+					IF oebar = '0' THEN
+					    ram_store(index) := TO_bitvector(data);
+					ELSE
+						data1 <=TO_StdlogicVector(ram_store(index));
+				
+					END IF;
+				
+				END IF;
+			
+			END IF;
+			
+	END PROCESS;
+END version1;

@@ -1,0 +1,213 @@
+PACKAGE cpu8pac IS
+--defining instruction set
+--instruction format
+-- 7----4|3--0|7----------0
+-- opcode|page|[page offset]
+--instructions which need an address are two bytes
+--long all others are single byte
+ CONSTANT lda : BIT_VECTOR(3 DOWNTO 0) := "0001";
+ CONSTANT ldb : BIT_VECTOR(3 DOWNTO 0) := "0010"; 
+ CONSTANT sta : BIT_VECTOR(3 DOWNTO 0) := "0011"; 
+ CONSTANT stb : BIT_VECTOR(3 DOWNTO 0) := "0000"; 
+ CONSTANT jmp : BIT_VECTOR(3 DOWNTO 0) := "0100"; 
+ CONSTANT add : BIT_VECTOR(3 DOWNTO 0) := "0101"; 
+ CONSTANT subr : BIT_VECTOR(3 DOWNTO 0) := "0110"; 
+ CONSTANT inc : BIT_VECTOR(3 DOWNTO 0) := "0111"; 
+ CONSTANT dec : BIT_VECTOR(3 DOWNTO 0) := "1000"; 
+ CONSTANT land : BIT_VECTOR(3 DOWNTO 0) := "1001"; 
+ CONSTANT lor : BIT_VECTOR(3 DOWNTO 0) := "1010"; 
+ CONSTANT cmp : BIT_VECTOR(3 DOWNTO 0) := "1011"; 
+ CONSTANT lxor : BIT_VECTOR(3 DOWNTO 0) := "1100"; 
+ CONSTANT lita : BIT_VECTOR(3 DOWNTO 0) := "1101"; 
+ CONSTANT litb : BIT_VECTOR(3 DOWNTO 0) := "1110"; 
+ CONSTANT clra : BIT_VECTOR(3 DOWNTO 0) := "1111"; 
+END cpu8pac;
+
+
+-- Cypress Semiconductor WARP 2.0
+--
+-- Copyright Cypress Semiconductor Corporation, 1994
+-- as an unpublished work.
+--
+-- $Id: libbv.vhd,v 1.4 1994/12/15 18:35:28 hemmert Exp $
+--
+-- package bv_math
+--
+-- Bit Vector support package:
+--
+-- Contains these functions:
+-- The output length of the function is the same as the input length.
+--
+-- inc_bv - increment a bit vector. If function is assigned
+-- to a signal within a clocked process, the result
+-- will be an up counter. Will require one macrocell
+-- for each bit.
+--
+-- dec_bv - decrement a bit vector. If function is assigned
+-- to a signal within a clocked process, the result
+-- will be a down counter. Will require one macrocell
+-- for each bit.
+--
+-- "+" - regular addition function for two bit vectors. 
+-- "+" operator overloads the existing "+" operator
+-- definition for arithmetic operations on integers.
+-- Will require one macrocell for each bit. The output
+-- is the same size as the input so there is no carry output.
+-- If a carry out is required, the user should increase the
+-- size of the input bit_vectors and use the MSB as the
+-- carry bit. There is also no separate carry-in.
+--
+-- "-" - regular subtraction function for two bit vectors. 
+-- "-" operator overloads the existing "-" operator
+-- definition for arithmetic operations on integers.
+--
+-- inv - unary invert for use in port maps and sequential
+-- assignments. Overloaded for bit_vectors.
+-- 
+--
+PACKAGE bv_math IS
+ FUNCTION inc_bv (a : BIT_VECTOR) RETURN BIT_VECTOR;
+ FUNCTION dec_bv (a : BIT_VECTOR) RETURN BIT_VECTOR;
+ FUNCTION "+" (a, b : BIT_VECTOR) RETURN BIT_VECTOR;
+ FUNCTION "+" (a : BIT_VECTOR; b : BIT) RETURN BIT_VECTOR;
+ FUNCTION "-" (a, b : BIT_VECTOR) RETURN BIT_VECTOR;
+ FUNCTION "-" (a : BIT_VECTOR; b : BIT) RETURN BIT_VECTOR;
+ FUNCTION inv (a : BIT) RETURN BIT;
+ FUNCTION inv (a : BIT_VECTOR) RETURN BIT_VECTOR;
+END bv_math;
+PACKAGE BODY bv_math IS
+ -- inc_bv
+ -- Increment Bit vector.
+ -- In: bit_vector.
+ -- Return: bit_vector.
+ --
+ FUNCTION inc_bv(a : BIT_VECTOR)RETURN BIT_VECTOR IS
+ VARIABLE s : BIT_VECTOR (a'RANGE);
+ VARIABLE carry : BIT;
+ BEGIN
+ carry := '1';
+ FOR i IN a'LOW TO a'HIGH LOOP
+ s(i) := a(i) XOR carry;
+ carry := a(i) AND carry;
+￾
+Examples of VHDL Descriptions
+ END LOOP;
+ RETURN (s);
+ END inc_bv;
+ -- "+"
+ -- Add overload for:
+ -- In: two bit_vectors.
+ -- Return: bit_vector.
+ --
+ FUNCTION "+"(a, b : BIT_VECTOR)RETURN BIT_VECTOR IS
+ VARIABLE s : BIT_VECTOR (a'RANGE);
+ VARIABLE carry : BIT;
+ VARIABLE bi : integer; -- Indexes b.
+ BEGIN
+ ASSERT a'LENGTH <= 8 REPORT
+ "Addition OF vectors OF LENGTH > 8 may take exponential TIME."
+ SEVERITY WARNING;
+ carry := '0';
+ FOR i IN a'LOW TO a'HIGH LOOP
+ bi := b'low + (i - a'low);
+ s(i) := (a(i) XOR b(bi)) XOR carry;
+ carry := ((a(i) OR b(bi)) AND carry) OR (a(i) AND b(bi));
+ END LOOP;
+ RETURN (s);
+ END "+"; -- Two bit_vectors.
+ -- "+"
+ -- Add overload for:
+ -- In: bit_vector and bit.
+ -- Return bit_vector.
+ --
+ FUNCTION "+"(a : BIT_VECTOR; b : BIT)RETURN BIT_VECTOR IS
+ VARIABLE s : BIT_VECTOR (a'RANGE);
+ VARIABLE carry : BIT;
+ BEGIN
+ carry := b;
+ FOR i IN a'LOW TO a'HIGH LOOP
+ s(i) := a(i) XOR carry;
+ carry := a(i) AND carry;
+ END LOOP;
+ RETURN (s);
+ END "+"; -- Bit_vector and bit.
+ -- dec_bv
+ -- Decrement Bit Vector
+ -- In: bit_vector.
+ -- Return: bit_vector.
+ --
+ FUNCTION dec_bv(a : BIT_VECTOR) RETURN BIT_VECTOR IS
+ VARIABLE s : BIT_VECTOR (a'RANGE);
+ VARIABLE borrow : BIT;
+ BEGIN
+ borrow := '1';
+ FOR i IN a'LOW TO a'HIGH LOOP
+ s(i) := a(i) XOR borrow;
+ borrow := NOT (a(i)) AND borrow;
+ END LOOP;
+ RETURN (s);
+ END dec_bv;
+ -- "-"
+ -- Subtract overload for:
+￾
+ -- In: two bit_vectors.
+ -- Return: bit_vector.
+ --
+ FUNCTION "-"(a,b : BIT_VECTOR) RETURN BIT_VECTOR IS
+ VARIABLE s : BIT_VECTOR (a'RANGE);
+ VARIABLE borrow : BIT;
+ VARIABLE bi : integer; -- Indexes b.
+ BEGIN
+ ASSERT a'LENGTH <= 8 REPORT
+ "Subtraction OF vectors OF LENGTH > 8 may take exponential TIME."
+ SEVERITY WARNING;
+ borrow := '0';
+ FOR i IN a'LOW TO a'HIGH LOOP
+ bi := b'low + (i - a'low);
+ s(i) := (a(i) XOR b(bi)) XOR borrow;
+ borrow := (
+ (NOT (a(i)) AND borrow)
+ OR (b(bi) AND borrow)
+ OR (NOT (a(i)) AND b(bi))
+ );
+ END LOOP;
+ RETURN (s);
+ END "-"; -- two bit_vectors
+ -- "-"
+ -- Subtract overload for:
+ -- In: bit_vector, take away bit.
+ -- Return: bit_vector.
+ --
+ FUNCTION "-" (a : BIT_VECTOR; b : BIT) RETURN BIT_VECTOR IS
+ VARIABLE s : BIT_VECTOR (a'RANGE);
+ VARIABLE borrow : BIT;
+ BEGIN
+ borrow := b;
+ FOR i IN a'LOW TO a'HIGH LOOP
+ s(i) := a(i) XOR borrow;
+ borrow := (NOT(a(i)) AND borrow);
+ END LOOP;
+ RETURN (s);
+ END "-";
+ -- inv
+ -- Invert bit.
+ --
+ FUNCTION inv (a : BIT) RETURN BIT IS
+ VARIABLE result : BIT;
+ BEGIN
+ result := NOT(a);
+ RETURN (result);
+ END inv; -- Invert bit.
+ -- inv
+ -- Invert bet_vector.
+ --
+ FUNCTION inv (a : BIT_VECTOR) RETURN BIT_VECTOR IS
+ VARIABLE result : BIT_VECTOR (a'RANGE);
+ BEGIN
+ FOR i IN a'RANGE LOOP
+ result(i) := NOT(a(i));
+ END LOOP;
+ RETURN (result);
+ END inv; -- Invert bit_vector.
+
+END bv_math;
