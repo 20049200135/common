@@ -1,0 +1,10 @@
+
+State Machine - |dlock|dl_control:CONTROL|state
+Name state.ps_change state.alarm state.ps_wrong state.ps_right state.ps_input state.inlock state.outlock 
+state.outlock 0 0 0 0 0 0 0 
+state.inlock 0 0 0 0 0 1 1 
+state.ps_input 0 0 0 0 1 0 1 
+state.ps_right 0 0 0 1 0 0 1 
+state.ps_wrong 0 0 1 0 0 0 1 
+state.alarm 0 1 0 0 0 0 1 
+state.ps_change 1 0 0 0 0 0 1 

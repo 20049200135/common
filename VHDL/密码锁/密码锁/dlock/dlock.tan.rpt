@@ -1,0 +1,823 @@
+Classic Timing Analyzer report for dlock
+Fri Dec 26 20:36:25 2008
+Quartus II Version 7.2 Build 151 09/26/2007 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Timing Analyzer Settings
+  4. Clock Settings Summary
+  5. Clock Setup: 'clk'
+  6. Clock Hold: 'clk'
+  7. tsu
+  8. tco
+  9. th
+ 10. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2007 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                                                                                                                                                                    ;
++------------------------------+------------------------------------------+---------------+----------------------------------+---------------------------+----------------------------+------------+----------+--------------+
+; Type                         ; Slack                                    ; Required Time ; Actual Time                      ; From                      ; To                         ; From Clock ; To Clock ; Failed Paths ;
++------------------------------+------------------------------------------+---------------+----------------------------------+---------------------------+----------------------------+------------+----------+--------------+
+; Worst-case tsu               ; N/A                                      ; None          ; 6.757 ns                         ; key_in[4]                 ; dl_coder:CODER|code_out[2] ; --         ; clk      ; 0            ;
+; Worst-case tco               ; N/A                                      ; None          ; 7.193 ns                         ; dl_control:CONTROL|warn   ; warn                       ; clk        ; --       ; 0            ;
+; Worst-case th                ; N/A                                      ; None          ; 0.320 ns                         ; off_al                    ; dl_control:CONTROL|warn    ; --         ; clk      ; 0            ;
+; Clock Setup: 'clk'           ; N/A                                      ; None          ; 62.28 MHz ( period = 16.056 ns ) ; dl_counter:CONUTER|cnt[1] ; dl_reg:REG|m0[1]           ; clk        ; clk      ; 0            ;
+; Clock Hold: 'clk'            ; Not operational: Clock Skew > Data Delay ; None          ; N/A                              ; dl_counter:CONUTER|cnt[0] ; dl_counter:CONUTER|cnt[0]  ; clk        ; clk      ; 4            ;
+; Total number of failed paths ;                                          ;               ;                                  ;                           ;                            ;            ;          ; 4            ;
++------------------------------+------------------------------------------+---------------+----------------------------------+---------------------------+----------------------------+------------+----------+--------------+
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Timing Analyzer Settings                                                                                      ;
++----------------------------------------------------------------+--------------------+------+----+-------------+
+; Option                                                         ; Setting            ; From ; To ; Entity Name ;
++----------------------------------------------------------------+--------------------+------+----+-------------+
+; Device Name                                                    ; EP2C35F672C6       ;      ;    ;             ;
+; Timing Models                                                  ; Final              ;      ;    ;             ;
+; Default hold multicycle                                        ; Same as Multicycle ;      ;    ;             ;
+; Cut paths between unrelated clock domains                      ; On                 ;      ;    ;             ;
+; Cut off read during write signal paths                         ; On                 ;      ;    ;             ;
+; Cut off feedback from I/O pins                                 ; On                 ;      ;    ;             ;
+; Report Combined Fast/Slow Timing                               ; Off                ;      ;    ;             ;
+; Ignore Clock Settings                                          ; Off                ;      ;    ;             ;
+; Analyze latches as synchronous elements                        ; On                 ;      ;    ;             ;
+; Enable Recovery/Removal analysis                               ; Off                ;      ;    ;             ;
+; Enable Clock Latency                                           ; Off                ;      ;    ;             ;
+; Use TimeQuest Timing Analyzer                                  ; Off                ;      ;    ;             ;
+; Number of source nodes to report per destination node          ; 10                 ;      ;    ;             ;
+; Number of destination nodes to report                          ; 10                 ;      ;    ;             ;
+; Number of paths to report                                      ; 200                ;      ;    ;             ;
+; Report Minimum Timing Checks                                   ; Off                ;      ;    ;             ;
+; Use Fast Timing Models                                         ; Off                ;      ;    ;             ;
+; Report IO Paths Separately                                     ; Off                ;      ;    ;             ;
+; Perform Multicorner Analysis                                   ; On                 ;      ;    ;             ;
+; Reports the worst-case path for each clock domain and analysis ; Off                ;      ;    ;             ;
++----------------------------------------------------------------+--------------------+------+----+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Settings Summary                                                                                                                                                             ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; Clock Node Name ; Clock Setting Name ; Type     ; Fmax Requirement ; Early Latency ; Late Latency ; Based on ; Multiply Base Fmax by ; Divide Base Fmax by ; Offset ; Phase offset ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+; clk             ;                    ; User Pin ; None             ; 0.000 ns      ; 0.000 ns     ; --       ; N/A                   ; N/A                 ; N/A    ;              ;
++-----------------+--------------------+----------+------------------+---------------+--------------+----------+-----------------------+---------------------+--------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Setup: 'clk'                                                                                                                                                                                                                                              ;
++-----------------------------------------+-----------------------------------------------------+----------------------------+------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; Slack                                   ; Actual fmax (period)                                ; From                       ; To                     ; From Clock ; To Clock ; Required Setup Relationship ; Required Longest P2P Time ; Actual Longest P2P Time ;
++-----------------------------------------+-----------------------------------------------------+----------------------------+------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+; N/A                                     ; 62.28 MHz ( period = 16.056 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|m0[1]       ; clk        ; clk      ; None                        ; None                      ; 1.947 ns                ;
+; N/A                                     ; 63.13 MHz ( period = 15.840 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|m0[1]       ; clk        ; clk      ; None                        ; None                      ; 1.839 ns                ;
+; N/A                                     ; 63.31 MHz ( period = 15.796 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 1.825 ns                ;
+; N/A                                     ; 63.31 MHz ( period = 15.796 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 1.825 ns                ;
+; N/A                                     ; 63.31 MHz ( period = 15.796 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 1.825 ns                ;
+; N/A                                     ; 63.31 MHz ( period = 15.796 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 1.825 ns                ;
+; N/A                                     ; 63.62 MHz ( period = 15.718 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 1.786 ns                ;
+; N/A                                     ; 63.62 MHz ( period = 15.718 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 1.786 ns                ;
+; N/A                                     ; 63.62 MHz ( period = 15.718 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 1.786 ns                ;
+; N/A                                     ; 63.62 MHz ( period = 15.718 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 1.786 ns                ;
+; N/A                                     ; 63.63 MHz ( period = 15.716 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 1.785 ns                ;
+; N/A                                     ; 63.63 MHz ( period = 15.716 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 1.785 ns                ;
+; N/A                                     ; 63.63 MHz ( period = 15.716 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 1.785 ns                ;
+; N/A                                     ; 63.63 MHz ( period = 15.716 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 1.785 ns                ;
+; N/A                                     ; 63.66 MHz ( period = 15.708 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 1.781 ns                ;
+; N/A                                     ; 63.66 MHz ( period = 15.708 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 1.781 ns                ;
+; N/A                                     ; 63.66 MHz ( period = 15.708 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 1.781 ns                ;
+; N/A                                     ; 63.66 MHz ( period = 15.708 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 1.781 ns                ;
+; N/A                                     ; 64.43 MHz ( period = 15.520 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|m0[3]       ; clk        ; clk      ; None                        ; None                      ; 1.681 ns                ;
+; N/A                                     ; 64.43 MHz ( period = 15.520 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|m0[2]       ; clk        ; clk      ; None                        ; None                      ; 1.681 ns                ;
+; N/A                                     ; 64.43 MHz ( period = 15.520 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|m0[0]       ; clk        ; clk      ; None                        ; None                      ; 1.681 ns                ;
+; N/A                                     ; 64.72 MHz ( period = 15.452 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|data_out[1] ; clk        ; clk      ; None                        ; None                      ; 1.652 ns                ;
+; N/A                                     ; 64.72 MHz ( period = 15.452 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|data_out[3] ; clk        ; clk      ; None                        ; None                      ; 1.652 ns                ;
+; N/A                                     ; 64.72 MHz ( period = 15.452 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|data_out[2] ; clk        ; clk      ; None                        ; None                      ; 1.652 ns                ;
+; N/A                                     ; 64.72 MHz ( period = 15.452 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|data_out[0] ; clk        ; clk      ; None                        ; None                      ; 1.652 ns                ;
+; N/A                                     ; 65.12 MHz ( period = 15.356 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|data_out[1] ; clk        ; clk      ; None                        ; None                      ; 1.604 ns                ;
+; N/A                                     ; 65.12 MHz ( period = 15.356 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|data_out[3] ; clk        ; clk      ; None                        ; None                      ; 1.604 ns                ;
+; N/A                                     ; 65.12 MHz ( period = 15.356 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|data_out[2] ; clk        ; clk      ; None                        ; None                      ; 1.604 ns                ;
+; N/A                                     ; 65.12 MHz ( period = 15.356 ns )                    ; dl_counter:CONUTER|cnt[1]  ; dl_reg:REG|data_out[0] ; clk        ; clk      ; None                        ; None                      ; 1.604 ns                ;
+; N/A                                     ; 65.34 MHz ( period = 15.304 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|m0[3]       ; clk        ; clk      ; None                        ; None                      ; 1.573 ns                ;
+; N/A                                     ; 65.34 MHz ( period = 15.304 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|m0[2]       ; clk        ; clk      ; None                        ; None                      ; 1.573 ns                ;
+; N/A                                     ; 65.34 MHz ( period = 15.304 ns )                    ; dl_counter:CONUTER|cnt[0]  ; dl_reg:REG|m0[0]       ; clk        ; clk      ; None                        ; None                      ; 1.573 ns                ;
+; N/A                                     ; 93.81 MHz ( period = 10.660 ns )                    ; dl_coder:CODER|key_in_1[1] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.520 ns                ;
+; N/A                                     ; 93.81 MHz ( period = 10.660 ns )                    ; dl_coder:CODER|key_in_1[1] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.520 ns                ;
+; N/A                                     ; 93.81 MHz ( period = 10.660 ns )                    ; dl_coder:CODER|key_in_1[1] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.520 ns                ;
+; N/A                                     ; 93.81 MHz ( period = 10.660 ns )                    ; dl_coder:CODER|key_in_1[1] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.520 ns                ;
+; N/A                                     ; 94.14 MHz ( period = 10.622 ns )                    ; dl_coder:CODER|key_in_1[1] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.501 ns                ;
+; N/A                                     ; 94.14 MHz ( period = 10.622 ns )                    ; dl_coder:CODER|key_in_1[1] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.501 ns                ;
+; N/A                                     ; 94.14 MHz ( period = 10.622 ns )                    ; dl_coder:CODER|key_in_1[1] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.501 ns                ;
+; N/A                                     ; 94.14 MHz ( period = 10.622 ns )                    ; dl_coder:CODER|key_in_1[1] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.501 ns                ;
+; N/A                                     ; 94.39 MHz ( period = 10.594 ns )                    ; dl_coder:CODER|key_in_1[7] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.487 ns                ;
+; N/A                                     ; 94.39 MHz ( period = 10.594 ns )                    ; dl_coder:CODER|key_in_1[7] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.487 ns                ;
+; N/A                                     ; 94.39 MHz ( period = 10.594 ns )                    ; dl_coder:CODER|key_in_1[7] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.487 ns                ;
+; N/A                                     ; 94.39 MHz ( period = 10.594 ns )                    ; dl_coder:CODER|key_in_1[7] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.487 ns                ;
+; N/A                                     ; 94.73 MHz ( period = 10.556 ns )                    ; dl_coder:CODER|key_in_1[7] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.468 ns                ;
+; N/A                                     ; 94.73 MHz ( period = 10.556 ns )                    ; dl_coder:CODER|key_in_1[7] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.468 ns                ;
+; N/A                                     ; 94.73 MHz ( period = 10.556 ns )                    ; dl_coder:CODER|key_in_1[7] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.468 ns                ;
+; N/A                                     ; 94.73 MHz ( period = 10.556 ns )                    ; dl_coder:CODER|key_in_1[7] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.468 ns                ;
+; N/A                                     ; 94.89 MHz ( period = 10.538 ns )                    ; dl_coder:CODER|key_in_2[0] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.459 ns                ;
+; N/A                                     ; 94.89 MHz ( period = 10.538 ns )                    ; dl_coder:CODER|key_in_2[0] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.459 ns                ;
+; N/A                                     ; 94.89 MHz ( period = 10.538 ns )                    ; dl_coder:CODER|key_in_2[0] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.459 ns                ;
+; N/A                                     ; 94.89 MHz ( period = 10.538 ns )                    ; dl_coder:CODER|key_in_2[0] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.459 ns                ;
+; N/A                                     ; 95.15 MHz ( period = 10.510 ns )                    ; dl_coder:CODER|key_in_2[3] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.445 ns                ;
+; N/A                                     ; 95.15 MHz ( period = 10.510 ns )                    ; dl_coder:CODER|key_in_2[3] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.445 ns                ;
+; N/A                                     ; 95.15 MHz ( period = 10.510 ns )                    ; dl_coder:CODER|key_in_2[3] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.445 ns                ;
+; N/A                                     ; 95.15 MHz ( period = 10.510 ns )                    ; dl_coder:CODER|key_in_2[3] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.445 ns                ;
+; N/A                                     ; 95.24 MHz ( period = 10.500 ns )                    ; dl_coder:CODER|key_in_2[0] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.440 ns                ;
+; N/A                                     ; 95.24 MHz ( period = 10.500 ns )                    ; dl_coder:CODER|key_in_2[0] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.440 ns                ;
+; N/A                                     ; 95.24 MHz ( period = 10.500 ns )                    ; dl_coder:CODER|key_in_2[0] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.440 ns                ;
+; N/A                                     ; 95.24 MHz ( period = 10.500 ns )                    ; dl_coder:CODER|key_in_2[0] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.440 ns                ;
+; N/A                                     ; 95.49 MHz ( period = 10.472 ns )                    ; dl_coder:CODER|key_in_2[3] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.426 ns                ;
+; N/A                                     ; 95.49 MHz ( period = 10.472 ns )                    ; dl_coder:CODER|key_in_1[3] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.426 ns                ;
+; N/A                                     ; 95.49 MHz ( period = 10.472 ns )                    ; dl_coder:CODER|key_in_2[3] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.426 ns                ;
+; N/A                                     ; 95.49 MHz ( period = 10.472 ns )                    ; dl_coder:CODER|key_in_2[3] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.426 ns                ;
+; N/A                                     ; 95.49 MHz ( period = 10.472 ns )                    ; dl_coder:CODER|key_in_2[3] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.426 ns                ;
+; N/A                                     ; 95.49 MHz ( period = 10.472 ns )                    ; dl_coder:CODER|key_in_1[3] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.426 ns                ;
+; N/A                                     ; 95.49 MHz ( period = 10.472 ns )                    ; dl_coder:CODER|key_in_1[3] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.426 ns                ;
+; N/A                                     ; 95.49 MHz ( period = 10.472 ns )                    ; dl_coder:CODER|key_in_1[3] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.426 ns                ;
+; N/A                                     ; 95.84 MHz ( period = 10.434 ns )                    ; dl_coder:CODER|key_in_1[3] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.407 ns                ;
+; N/A                                     ; 95.84 MHz ( period = 10.434 ns )                    ; dl_coder:CODER|key_in_1[3] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.407 ns                ;
+; N/A                                     ; 95.84 MHz ( period = 10.434 ns )                    ; dl_coder:CODER|key_in_1[3] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.407 ns                ;
+; N/A                                     ; 95.84 MHz ( period = 10.434 ns )                    ; dl_coder:CODER|key_in_1[3] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.407 ns                ;
+; N/A                                     ; 96.82 MHz ( period = 10.328 ns )                    ; dl_coder:CODER|key_in_2[7] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.354 ns                ;
+; N/A                                     ; 96.82 MHz ( period = 10.328 ns )                    ; dl_coder:CODER|key_in_2[7] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.354 ns                ;
+; N/A                                     ; 96.82 MHz ( period = 10.328 ns )                    ; dl_coder:CODER|key_in_2[7] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.354 ns                ;
+; N/A                                     ; 96.82 MHz ( period = 10.328 ns )                    ; dl_coder:CODER|key_in_2[7] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.354 ns                ;
+; N/A                                     ; 97.18 MHz ( period = 10.290 ns )                    ; dl_coder:CODER|key_in_2[7] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.335 ns                ;
+; N/A                                     ; 97.18 MHz ( period = 10.290 ns )                    ; dl_coder:CODER|key_in_2[7] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.335 ns                ;
+; N/A                                     ; 97.18 MHz ( period = 10.290 ns )                    ; dl_coder:CODER|key_in_2[7] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.335 ns                ;
+; N/A                                     ; 97.18 MHz ( period = 10.290 ns )                    ; dl_coder:CODER|key_in_2[7] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.335 ns                ;
+; N/A                                     ; 97.37 MHz ( period = 10.270 ns )                    ; dl_coder:CODER|key_in_1[1] ; dl_reg:REG|data_out[1] ; clk        ; clk      ; None                        ; None                      ; 4.324 ns                ;
+; N/A                                     ; 97.37 MHz ( period = 10.270 ns )                    ; dl_coder:CODER|key_in_1[1] ; dl_reg:REG|data_out[3] ; clk        ; clk      ; None                        ; None                      ; 4.324 ns                ;
+; N/A                                     ; 97.37 MHz ( period = 10.270 ns )                    ; dl_coder:CODER|key_in_1[1] ; dl_reg:REG|data_out[2] ; clk        ; clk      ; None                        ; None                      ; 4.324 ns                ;
+; N/A                                     ; 97.37 MHz ( period = 10.270 ns )                    ; dl_coder:CODER|key_in_1[1] ; dl_reg:REG|data_out[0] ; clk        ; clk      ; None                        ; None                      ; 4.324 ns                ;
+; N/A                                     ; 97.73 MHz ( period = 10.232 ns )                    ; dl_coder:CODER|key_in_2[2] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.306 ns                ;
+; N/A                                     ; 97.73 MHz ( period = 10.232 ns )                    ; dl_coder:CODER|key_in_2[2] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.306 ns                ;
+; N/A                                     ; 97.73 MHz ( period = 10.232 ns )                    ; dl_coder:CODER|key_in_2[2] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.306 ns                ;
+; N/A                                     ; 97.73 MHz ( period = 10.232 ns )                    ; dl_coder:CODER|key_in_2[2] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.306 ns                ;
+; N/A                                     ; 98.00 MHz ( period = 10.204 ns )                    ; dl_coder:CODER|key_in_1[7] ; dl_reg:REG|data_out[1] ; clk        ; clk      ; None                        ; None                      ; 4.291 ns                ;
+; N/A                                     ; 98.00 MHz ( period = 10.204 ns )                    ; dl_coder:CODER|key_in_1[7] ; dl_reg:REG|data_out[3] ; clk        ; clk      ; None                        ; None                      ; 4.291 ns                ;
+; N/A                                     ; 98.00 MHz ( period = 10.204 ns )                    ; dl_coder:CODER|key_in_1[7] ; dl_reg:REG|data_out[2] ; clk        ; clk      ; None                        ; None                      ; 4.291 ns                ;
+; N/A                                     ; 98.00 MHz ( period = 10.204 ns )                    ; dl_coder:CODER|key_in_1[7] ; dl_reg:REG|data_out[0] ; clk        ; clk      ; None                        ; None                      ; 4.291 ns                ;
+; N/A                                     ; 98.10 MHz ( period = 10.194 ns )                    ; dl_coder:CODER|key_in_2[2] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.287 ns                ;
+; N/A                                     ; 98.10 MHz ( period = 10.194 ns )                    ; dl_coder:CODER|key_in_2[2] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.287 ns                ;
+; N/A                                     ; 98.10 MHz ( period = 10.194 ns )                    ; dl_coder:CODER|key_in_2[2] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.287 ns                ;
+; N/A                                     ; 98.10 MHz ( period = 10.194 ns )                    ; dl_coder:CODER|key_in_2[2] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.287 ns                ;
+; N/A                                     ; 98.12 MHz ( period = 10.192 ns )                    ; dl_coder:CODER|key_in_1[2] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.286 ns                ;
+; N/A                                     ; 98.12 MHz ( period = 10.192 ns )                    ; dl_coder:CODER|key_in_1[2] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.286 ns                ;
+; N/A                                     ; 98.12 MHz ( period = 10.192 ns )                    ; dl_coder:CODER|key_in_1[2] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.286 ns                ;
+; N/A                                     ; 98.12 MHz ( period = 10.192 ns )                    ; dl_coder:CODER|key_in_1[2] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.286 ns                ;
+; N/A                                     ; 98.48 MHz ( period = 10.154 ns )                    ; dl_coder:CODER|key_in_1[2] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.267 ns                ;
+; N/A                                     ; 98.48 MHz ( period = 10.154 ns )                    ; dl_coder:CODER|key_in_1[2] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.267 ns                ;
+; N/A                                     ; 98.48 MHz ( period = 10.154 ns )                    ; dl_coder:CODER|key_in_1[2] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.267 ns                ;
+; N/A                                     ; 98.48 MHz ( period = 10.154 ns )                    ; dl_coder:CODER|key_in_1[2] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.267 ns                ;
+; N/A                                     ; 98.54 MHz ( period = 10.148 ns )                    ; dl_coder:CODER|key_in_2[0] ; dl_reg:REG|data_out[1] ; clk        ; clk      ; None                        ; None                      ; 4.263 ns                ;
+; N/A                                     ; 98.54 MHz ( period = 10.148 ns )                    ; dl_coder:CODER|key_in_2[0] ; dl_reg:REG|data_out[3] ; clk        ; clk      ; None                        ; None                      ; 4.263 ns                ;
+; N/A                                     ; 98.54 MHz ( period = 10.148 ns )                    ; dl_coder:CODER|key_in_2[0] ; dl_reg:REG|data_out[2] ; clk        ; clk      ; None                        ; None                      ; 4.263 ns                ;
+; N/A                                     ; 98.54 MHz ( period = 10.148 ns )                    ; dl_coder:CODER|key_in_2[0] ; dl_reg:REG|data_out[0] ; clk        ; clk      ; None                        ; None                      ; 4.263 ns                ;
+; N/A                                     ; 98.81 MHz ( period = 10.120 ns )                    ; dl_coder:CODER|key_in_2[3] ; dl_reg:REG|data_out[1] ; clk        ; clk      ; None                        ; None                      ; 4.249 ns                ;
+; N/A                                     ; 98.81 MHz ( period = 10.120 ns )                    ; dl_coder:CODER|key_in_2[3] ; dl_reg:REG|data_out[3] ; clk        ; clk      ; None                        ; None                      ; 4.249 ns                ;
+; N/A                                     ; 98.81 MHz ( period = 10.120 ns )                    ; dl_coder:CODER|key_in_2[3] ; dl_reg:REG|data_out[2] ; clk        ; clk      ; None                        ; None                      ; 4.249 ns                ;
+; N/A                                     ; 98.81 MHz ( period = 10.120 ns )                    ; dl_coder:CODER|key_in_2[3] ; dl_reg:REG|data_out[0] ; clk        ; clk      ; None                        ; None                      ; 4.249 ns                ;
+; N/A                                     ; 99.19 MHz ( period = 10.082 ns )                    ; dl_coder:CODER|key_in_1[3] ; dl_reg:REG|data_out[1] ; clk        ; clk      ; None                        ; None                      ; 4.230 ns                ;
+; N/A                                     ; 99.19 MHz ( period = 10.082 ns )                    ; dl_coder:CODER|key_in_1[3] ; dl_reg:REG|data_out[3] ; clk        ; clk      ; None                        ; None                      ; 4.230 ns                ;
+; N/A                                     ; 99.19 MHz ( period = 10.082 ns )                    ; dl_coder:CODER|key_in_1[3] ; dl_reg:REG|data_out[2] ; clk        ; clk      ; None                        ; None                      ; 4.230 ns                ;
+; N/A                                     ; 99.19 MHz ( period = 10.082 ns )                    ; dl_coder:CODER|key_in_1[3] ; dl_reg:REG|data_out[0] ; clk        ; clk      ; None                        ; None                      ; 4.230 ns                ;
+; N/A                                     ; 99.50 MHz ( period = 10.050 ns )                    ; dl_coder:CODER|key_in_1[0] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.215 ns                ;
+; N/A                                     ; 99.50 MHz ( period = 10.050 ns )                    ; dl_coder:CODER|key_in_1[0] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.215 ns                ;
+; N/A                                     ; 99.50 MHz ( period = 10.050 ns )                    ; dl_coder:CODER|key_in_1[0] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.215 ns                ;
+; N/A                                     ; 99.50 MHz ( period = 10.050 ns )                    ; dl_coder:CODER|key_in_1[0] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.215 ns                ;
+; N/A                                     ; 99.88 MHz ( period = 10.012 ns )                    ; dl_coder:CODER|key_in_1[0] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.196 ns                ;
+; N/A                                     ; 99.88 MHz ( period = 10.012 ns )                    ; dl_coder:CODER|key_in_1[0] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.196 ns                ;
+; N/A                                     ; 99.88 MHz ( period = 10.012 ns )                    ; dl_coder:CODER|key_in_1[0] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.196 ns                ;
+; N/A                                     ; 99.88 MHz ( period = 10.012 ns )                    ; dl_coder:CODER|key_in_1[0] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.196 ns                ;
+; N/A                                     ; 100.62 MHz ( period = 9.938 ns )                    ; dl_coder:CODER|key_in_2[7] ; dl_reg:REG|data_out[1] ; clk        ; clk      ; None                        ; None                      ; 4.158 ns                ;
+; N/A                                     ; 100.62 MHz ( period = 9.938 ns )                    ; dl_coder:CODER|key_in_2[7] ; dl_reg:REG|data_out[3] ; clk        ; clk      ; None                        ; None                      ; 4.158 ns                ;
+; N/A                                     ; 100.62 MHz ( period = 9.938 ns )                    ; dl_coder:CODER|key_in_2[7] ; dl_reg:REG|data_out[2] ; clk        ; clk      ; None                        ; None                      ; 4.158 ns                ;
+; N/A                                     ; 100.62 MHz ( period = 9.938 ns )                    ; dl_coder:CODER|key_in_2[7] ; dl_reg:REG|data_out[0] ; clk        ; clk      ; None                        ; None                      ; 4.158 ns                ;
+; N/A                                     ; 100.97 MHz ( period = 9.904 ns )                    ; dl_coder:CODER|key_in_1[5] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.142 ns                ;
+; N/A                                     ; 100.97 MHz ( period = 9.904 ns )                    ; dl_coder:CODER|key_in_1[5] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.142 ns                ;
+; N/A                                     ; 100.97 MHz ( period = 9.904 ns )                    ; dl_coder:CODER|key_in_1[5] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.142 ns                ;
+; N/A                                     ; 100.97 MHz ( period = 9.904 ns )                    ; dl_coder:CODER|key_in_1[5] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.142 ns                ;
+; N/A                                     ; 101.36 MHz ( period = 9.866 ns )                    ; dl_coder:CODER|key_in_1[5] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.123 ns                ;
+; N/A                                     ; 101.36 MHz ( period = 9.866 ns )                    ; dl_coder:CODER|key_in_1[5] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.123 ns                ;
+; N/A                                     ; 101.36 MHz ( period = 9.866 ns )                    ; dl_coder:CODER|key_in_1[5] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.123 ns                ;
+; N/A                                     ; 101.36 MHz ( period = 9.866 ns )                    ; dl_coder:CODER|key_in_1[5] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.123 ns                ;
+; N/A                                     ; 101.38 MHz ( period = 9.864 ns )                    ; dl_coder:CODER|key_in_1[4] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.139 ns                ;
+; N/A                                     ; 101.38 MHz ( period = 9.864 ns )                    ; dl_coder:CODER|key_in_1[4] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.139 ns                ;
+; N/A                                     ; 101.38 MHz ( period = 9.864 ns )                    ; dl_coder:CODER|key_in_1[4] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.139 ns                ;
+; N/A                                     ; 101.38 MHz ( period = 9.864 ns )                    ; dl_coder:CODER|key_in_1[4] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.139 ns                ;
+; N/A                                     ; 101.61 MHz ( period = 9.842 ns )                    ; dl_coder:CODER|key_in_2[2] ; dl_reg:REG|data_out[1] ; clk        ; clk      ; None                        ; None                      ; 4.110 ns                ;
+; N/A                                     ; 101.61 MHz ( period = 9.842 ns )                    ; dl_coder:CODER|key_in_2[2] ; dl_reg:REG|data_out[3] ; clk        ; clk      ; None                        ; None                      ; 4.110 ns                ;
+; N/A                                     ; 101.61 MHz ( period = 9.842 ns )                    ; dl_coder:CODER|key_in_2[2] ; dl_reg:REG|data_out[2] ; clk        ; clk      ; None                        ; None                      ; 4.110 ns                ;
+; N/A                                     ; 101.61 MHz ( period = 9.842 ns )                    ; dl_coder:CODER|key_in_2[2] ; dl_reg:REG|data_out[0] ; clk        ; clk      ; None                        ; None                      ; 4.110 ns                ;
+; N/A                                     ; 101.77 MHz ( period = 9.826 ns )                    ; dl_coder:CODER|key_in_1[4] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.120 ns                ;
+; N/A                                     ; 101.77 MHz ( period = 9.826 ns )                    ; dl_coder:CODER|key_in_1[4] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.120 ns                ;
+; N/A                                     ; 101.77 MHz ( period = 9.826 ns )                    ; dl_coder:CODER|key_in_1[4] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.120 ns                ;
+; N/A                                     ; 101.77 MHz ( period = 9.826 ns )                    ; dl_coder:CODER|key_in_1[4] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.120 ns                ;
+; N/A                                     ; 101.85 MHz ( period = 9.818 ns )                    ; dl_coder:CODER|key_in_1[8] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.116 ns                ;
+; N/A                                     ; 101.85 MHz ( period = 9.818 ns )                    ; dl_coder:CODER|key_in_1[8] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.116 ns                ;
+; N/A                                     ; 101.85 MHz ( period = 9.818 ns )                    ; dl_coder:CODER|key_in_1[8] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.116 ns                ;
+; N/A                                     ; 101.85 MHz ( period = 9.818 ns )                    ; dl_coder:CODER|key_in_1[8] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.116 ns                ;
+; N/A                                     ; 102.02 MHz ( period = 9.802 ns )                    ; dl_coder:CODER|key_in_1[2] ; dl_reg:REG|data_out[1] ; clk        ; clk      ; None                        ; None                      ; 4.090 ns                ;
+; N/A                                     ; 102.02 MHz ( period = 9.802 ns )                    ; dl_coder:CODER|key_in_1[2] ; dl_reg:REG|data_out[3] ; clk        ; clk      ; None                        ; None                      ; 4.090 ns                ;
+; N/A                                     ; 102.02 MHz ( period = 9.802 ns )                    ; dl_coder:CODER|key_in_1[2] ; dl_reg:REG|data_out[2] ; clk        ; clk      ; None                        ; None                      ; 4.090 ns                ;
+; N/A                                     ; 102.02 MHz ( period = 9.802 ns )                    ; dl_coder:CODER|key_in_1[2] ; dl_reg:REG|data_out[0] ; clk        ; clk      ; None                        ; None                      ; 4.090 ns                ;
+; N/A                                     ; 102.25 MHz ( period = 9.780 ns )                    ; dl_coder:CODER|key_in_1[8] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.097 ns                ;
+; N/A                                     ; 102.25 MHz ( period = 9.780 ns )                    ; dl_coder:CODER|key_in_1[8] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.097 ns                ;
+; N/A                                     ; 102.25 MHz ( period = 9.780 ns )                    ; dl_coder:CODER|key_in_1[8] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.097 ns                ;
+; N/A                                     ; 102.25 MHz ( period = 9.780 ns )                    ; dl_coder:CODER|key_in_1[8] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.097 ns                ;
+; N/A                                     ; 102.31 MHz ( period = 9.774 ns )                    ; dl_coder:CODER|key_in_2[1] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.077 ns                ;
+; N/A                                     ; 102.31 MHz ( period = 9.774 ns )                    ; dl_coder:CODER|key_in_2[1] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.077 ns                ;
+; N/A                                     ; 102.31 MHz ( period = 9.774 ns )                    ; dl_coder:CODER|key_in_2[1] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.077 ns                ;
+; N/A                                     ; 102.31 MHz ( period = 9.774 ns )                    ; dl_coder:CODER|key_in_2[1] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.077 ns                ;
+; N/A                                     ; 102.63 MHz ( period = 9.744 ns )                    ; dl_coder:CODER|key_in_1[9] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.062 ns                ;
+; N/A                                     ; 102.63 MHz ( period = 9.744 ns )                    ; dl_coder:CODER|key_in_1[9] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.062 ns                ;
+; N/A                                     ; 102.63 MHz ( period = 9.744 ns )                    ; dl_coder:CODER|key_in_1[9] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.062 ns                ;
+; N/A                                     ; 102.63 MHz ( period = 9.744 ns )                    ; dl_coder:CODER|key_in_1[9] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.062 ns                ;
+; N/A                                     ; 102.71 MHz ( period = 9.736 ns )                    ; dl_coder:CODER|key_in_2[1] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.058 ns                ;
+; N/A                                     ; 102.71 MHz ( period = 9.736 ns )                    ; dl_coder:CODER|key_in_2[1] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.058 ns                ;
+; N/A                                     ; 102.71 MHz ( period = 9.736 ns )                    ; dl_coder:CODER|key_in_2[1] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.058 ns                ;
+; N/A                                     ; 102.71 MHz ( period = 9.736 ns )                    ; dl_coder:CODER|key_in_2[1] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.058 ns                ;
+; N/A                                     ; 103.03 MHz ( period = 9.706 ns )                    ; dl_coder:CODER|key_in_1[9] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 4.043 ns                ;
+; N/A                                     ; 103.03 MHz ( period = 9.706 ns )                    ; dl_coder:CODER|key_in_1[9] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 4.043 ns                ;
+; N/A                                     ; 103.03 MHz ( period = 9.706 ns )                    ; dl_coder:CODER|key_in_1[9] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 4.043 ns                ;
+; N/A                                     ; 103.03 MHz ( period = 9.706 ns )                    ; dl_coder:CODER|key_in_1[9] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 4.043 ns                ;
+; N/A                                     ; 103.52 MHz ( period = 9.660 ns )                    ; dl_coder:CODER|key_in_1[0] ; dl_reg:REG|data_out[1] ; clk        ; clk      ; None                        ; None                      ; 4.019 ns                ;
+; N/A                                     ; 103.52 MHz ( period = 9.660 ns )                    ; dl_coder:CODER|key_in_1[0] ; dl_reg:REG|data_out[3] ; clk        ; clk      ; None                        ; None                      ; 4.019 ns                ;
+; N/A                                     ; 103.52 MHz ( period = 9.660 ns )                    ; dl_coder:CODER|key_in_1[0] ; dl_reg:REG|data_out[2] ; clk        ; clk      ; None                        ; None                      ; 4.019 ns                ;
+; N/A                                     ; 103.52 MHz ( period = 9.660 ns )                    ; dl_coder:CODER|key_in_1[0] ; dl_reg:REG|data_out[0] ; clk        ; clk      ; None                        ; None                      ; 4.019 ns                ;
+; N/A                                     ; 103.78 MHz ( period = 9.636 ns )                    ; dl_coder:CODER|key_in_2[5] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.008 ns                ;
+; N/A                                     ; 103.78 MHz ( period = 9.636 ns )                    ; dl_coder:CODER|key_in_2[5] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.008 ns                ;
+; N/A                                     ; 103.78 MHz ( period = 9.636 ns )                    ; dl_coder:CODER|key_in_2[5] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.008 ns                ;
+; N/A                                     ; 103.78 MHz ( period = 9.636 ns )                    ; dl_coder:CODER|key_in_2[5] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.008 ns                ;
+; N/A                                     ; 103.84 MHz ( period = 9.630 ns )                    ; dl_coder:CODER|key_in_1[6] ; dl_reg:REG|m2[1]       ; clk        ; clk      ; None                        ; None                      ; 4.005 ns                ;
+; N/A                                     ; 103.84 MHz ( period = 9.630 ns )                    ; dl_coder:CODER|key_in_1[6] ; dl_reg:REG|m2[3]       ; clk        ; clk      ; None                        ; None                      ; 4.005 ns                ;
+; N/A                                     ; 103.84 MHz ( period = 9.630 ns )                    ; dl_coder:CODER|key_in_1[6] ; dl_reg:REG|m2[2]       ; clk        ; clk      ; None                        ; None                      ; 4.005 ns                ;
+; N/A                                     ; 103.84 MHz ( period = 9.630 ns )                    ; dl_coder:CODER|key_in_1[6] ; dl_reg:REG|m2[0]       ; clk        ; clk      ; None                        ; None                      ; 4.005 ns                ;
+; N/A                                     ; 104.19 MHz ( period = 9.598 ns )                    ; dl_coder:CODER|key_in_2[5] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 3.989 ns                ;
+; N/A                                     ; 104.19 MHz ( period = 9.598 ns )                    ; dl_coder:CODER|key_in_2[5] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 3.989 ns                ;
+; N/A                                     ; 104.19 MHz ( period = 9.598 ns )                    ; dl_coder:CODER|key_in_2[5] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 3.989 ns                ;
+; N/A                                     ; 104.19 MHz ( period = 9.598 ns )                    ; dl_coder:CODER|key_in_2[5] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 3.989 ns                ;
+; N/A                                     ; 104.25 MHz ( period = 9.592 ns )                    ; dl_coder:CODER|key_in_1[6] ; dl_reg:REG|m1[1]       ; clk        ; clk      ; None                        ; None                      ; 3.986 ns                ;
+; N/A                                     ; 104.25 MHz ( period = 9.592 ns )                    ; dl_coder:CODER|key_in_1[6] ; dl_reg:REG|m1[3]       ; clk        ; clk      ; None                        ; None                      ; 3.986 ns                ;
+; N/A                                     ; 104.25 MHz ( period = 9.592 ns )                    ; dl_coder:CODER|key_in_1[6] ; dl_reg:REG|m1[2]       ; clk        ; clk      ; None                        ; None                      ; 3.986 ns                ;
+; N/A                                     ; 104.25 MHz ( period = 9.592 ns )                    ; dl_coder:CODER|key_in_1[6] ; dl_reg:REG|m1[0]       ; clk        ; clk      ; None                        ; None                      ; 3.986 ns                ;
+; N/A                                     ; 104.34 MHz ( period = 9.584 ns )                    ; dl_coder:CODER|key_in_1[1] ; dl_reg:REG|m0[1]       ; clk        ; clk      ; None                        ; None                      ; 3.974 ns                ;
+; N/A                                     ; 105.06 MHz ( period = 9.518 ns )                    ; dl_coder:CODER|key_in_1[7] ; dl_reg:REG|m0[1]       ; clk        ; clk      ; None                        ; None                      ; 3.941 ns                ;
+; N/A                                     ; 105.11 MHz ( period = 9.514 ns )                    ; dl_coder:CODER|key_in_1[5] ; dl_reg:REG|data_out[3] ; clk        ; clk      ; None                        ; None                      ; 3.946 ns                ;
+; N/A                                     ; 105.11 MHz ( period = 9.514 ns )                    ; dl_coder:CODER|key_in_1[5] ; dl_reg:REG|data_out[2] ; clk        ; clk      ; None                        ; None                      ; 3.946 ns                ;
+; Timing analysis restricted to 200 rows. ; To change the limit use Settings (Assignments menu) ;                            ;                        ;            ;          ;                             ;                           ;                         ;
++-----------------------------------------+-----------------------------------------------------+----------------------------+------------------------+------------+----------+-----------------------------+---------------------------+-------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Hold: 'clk'                                                                                                                                                                                             ;
++------------------------------------------+---------------------------+---------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Minimum Slack                            ; From                      ; To                        ; From Clock ; To Clock ; Required Hold Relationship ; Required Shortest P2P Time ; Actual Shortest P2P Time ;
++------------------------------------------+---------------------------+---------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+; Not operational: Clock Skew > Data Delay ; dl_counter:CONUTER|cnt[0] ; dl_counter:CONUTER|cnt[0] ; clk        ; clk      ; None                       ; None                       ; 0.407 ns                 ;
+; Not operational: Clock Skew > Data Delay ; dl_counter:CONUTER|cnt[1] ; dl_counter:CONUTER|cnt[1] ; clk        ; clk      ; None                       ; None                       ; 0.407 ns                 ;
+; Not operational: Clock Skew > Data Delay ; dl_counter:CONUTER|cout   ; dl_counter:CONUTER|cout   ; clk        ; clk      ; None                       ; None                       ; 0.407 ns                 ;
+; Not operational: Clock Skew > Data Delay ; dl_counter:CONUTER|cnt[1] ; dl_counter:CONUTER|cout   ; clk        ; clk      ; None                       ; None                       ; 0.825 ns                 ;
++------------------------------------------+---------------------------+---------------------------+------------+----------+----------------------------+----------------------------+--------------------------+
+
+
++-----------------------------------------------------------------------------------------------+
+; tsu                                                                                           ;
++-------+--------------+------------+-----------+------------------------------------+----------+
+; Slack ; Required tsu ; Actual tsu ; From      ; To                                 ; To Clock ;
++-------+--------------+------------+-----------+------------------------------------+----------+
+; N/A   ; None         ; 6.757 ns   ; key_in[4] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A   ; None         ; 6.757 ns   ; key_in[4] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A   ; None         ; 6.757 ns   ; key_in[4] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A   ; None         ; 6.724 ns   ; key_in[4] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A   ; None         ; 6.714 ns   ; key_in[4] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A   ; None         ; 6.668 ns   ; key_in[4] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A   ; None         ; 6.540 ns   ; key_in[4] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A   ; None         ; 6.372 ns   ; key_in[5] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A   ; None         ; 6.372 ns   ; key_in[5] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A   ; None         ; 6.372 ns   ; key_in[5] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A   ; None         ; 6.361 ns   ; key_in[4] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A   ; None         ; 6.339 ns   ; key_in[5] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A   ; None         ; 6.329 ns   ; key_in[5] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A   ; None         ; 6.283 ns   ; key_in[5] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A   ; None         ; 6.247 ns   ; key_in[1] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A   ; None         ; 6.247 ns   ; key_in[1] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A   ; None         ; 6.247 ns   ; key_in[1] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A   ; None         ; 6.214 ns   ; key_in[1] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A   ; None         ; 6.204 ns   ; key_in[1] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A   ; None         ; 6.158 ns   ; key_in[1] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A   ; None         ; 6.155 ns   ; key_in[5] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A   ; None         ; 6.073 ns   ; key_in[9] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A   ; None         ; 6.073 ns   ; key_in[9] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A   ; None         ; 6.073 ns   ; key_in[9] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A   ; None         ; 6.040 ns   ; key_in[9] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A   ; None         ; 6.030 ns   ; key_in[9] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A   ; None         ; 6.030 ns   ; key_in[1] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A   ; None         ; 5.984 ns   ; key_in[9] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A   ; None         ; 5.976 ns   ; key_in[5] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A   ; None         ; 5.969 ns   ; key_in[3] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A   ; None         ; 5.969 ns   ; key_in[3] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A   ; None         ; 5.969 ns   ; key_in[3] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A   ; None         ; 5.936 ns   ; key_in[3] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A   ; None         ; 5.926 ns   ; key_in[3] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A   ; None         ; 5.897 ns   ; key_in[4] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A   ; None         ; 5.889 ns   ; key_in[4] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A   ; None         ; 5.880 ns   ; key_in[3] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A   ; None         ; 5.856 ns   ; key_in[9] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A   ; None         ; 5.851 ns   ; key_in[1] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A   ; None         ; 5.807 ns   ; key_in[2] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A   ; None         ; 5.807 ns   ; key_in[2] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A   ; None         ; 5.807 ns   ; key_in[2] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A   ; None         ; 5.774 ns   ; key_in[2] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A   ; None         ; 5.764 ns   ; key_in[2] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A   ; None         ; 5.752 ns   ; key_in[3] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A   ; None         ; 5.718 ns   ; key_in[2] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A   ; None         ; 5.716 ns   ; key_in[6] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A   ; None         ; 5.695 ns   ; key_in[6] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A   ; None         ; 5.694 ns   ; key_in[7] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A   ; None         ; 5.677 ns   ; key_in[9] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A   ; None         ; 5.666 ns   ; key_in[4] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A   ; None         ; 5.614 ns   ; key_in[0] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A   ; None         ; 5.614 ns   ; key_in[0] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A   ; None         ; 5.614 ns   ; key_in[0] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A   ; None         ; 5.590 ns   ; key_in[2] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A   ; None         ; 5.581 ns   ; key_in[0] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A   ; None         ; 5.575 ns   ; key_in[7] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A   ; None         ; 5.573 ns   ; key_in[3] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A   ; None         ; 5.571 ns   ; key_in[0] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A   ; None         ; 5.554 ns   ; key_in[7] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A   ; None         ; 5.525 ns   ; key_in[0] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A   ; None         ; 5.522 ns   ; key_in[6] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A   ; None         ; 5.522 ns   ; key_in[6] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A   ; None         ; 5.522 ns   ; key_in[6] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A   ; None         ; 5.520 ns   ; enter     ; dl_control:CONTROL|state.alarm     ; clk      ;
+; N/A   ; None         ; 5.512 ns   ; key_in[5] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A   ; None         ; 5.504 ns   ; key_in[5] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A   ; None         ; 5.483 ns   ; key_in[4] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A   ; None         ; 5.476 ns   ; key_in[4] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A   ; None         ; 5.458 ns   ; key_in[4] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A   ; None         ; 5.411 ns   ; key_in[2] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A   ; None         ; 5.397 ns   ; key_in[0] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A   ; None         ; 5.387 ns   ; key_in[1] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A   ; None         ; 5.381 ns   ; key_in[7] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A   ; None         ; 5.381 ns   ; key_in[7] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A   ; None         ; 5.379 ns   ; key_in[1] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A   ; None         ; 5.335 ns   ; key_in[6] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A   ; None         ; 5.312 ns   ; key_in[8] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A   ; None         ; 5.305 ns   ; key_in[6] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A   ; None         ; 5.304 ns   ; key_in[6] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A   ; None         ; 5.290 ns   ; key_in[8] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A   ; None         ; 5.281 ns   ; key_in[5] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A   ; None         ; 5.218 ns   ; key_in[0] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A   ; None         ; 5.213 ns   ; key_in[9] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A   ; None         ; 5.205 ns   ; key_in[9] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A   ; None         ; 5.194 ns   ; key_in[7] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A   ; None         ; 5.169 ns   ; enter     ; dl_control:CONTROL|code_en         ; clk      ;
+; N/A   ; None         ; 5.167 ns   ; enter     ; dl_control:CONTROL|cnt_clr         ; clk      ;
+; N/A   ; None         ; 5.164 ns   ; key_in[7] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A   ; None         ; 5.163 ns   ; key_in[7] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A   ; None         ; 5.156 ns   ; key_in[1] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A   ; None         ; 5.109 ns   ; key_in[3] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A   ; None         ; 5.101 ns   ; key_in[3] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A   ; None         ; 5.098 ns   ; key_in[5] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A   ; None         ; 5.095 ns   ; enter     ; dl_control:CONTROL|cnt_clr2        ; clk      ;
+; N/A   ; None         ; 5.091 ns   ; key_in[5] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A   ; None         ; 5.073 ns   ; key_in[5] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A   ; None         ; 4.997 ns   ; key_in[8] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A   ; None         ; 4.997 ns   ; key_in[8] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A   ; None         ; 4.997 ns   ; key_in[8] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A   ; None         ; 4.982 ns   ; key_in[9] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A   ; None         ; 4.973 ns   ; key_in[1] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A   ; None         ; 4.966 ns   ; key_in[1] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A   ; None         ; 4.948 ns   ; key_in[1] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A   ; None         ; 4.947 ns   ; key_in[2] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A   ; None         ; 4.939 ns   ; key_in[2] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A   ; None         ; 4.931 ns   ; key_in[8] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A   ; None         ; 4.880 ns   ; key_in[6] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A   ; None         ; 4.878 ns   ; key_in[3] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A   ; None         ; 4.873 ns   ; key_in[6] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A   ; None         ; 4.799 ns   ; key_in[9] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A   ; None         ; 4.792 ns   ; key_in[9] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A   ; None         ; 4.787 ns   ; enter     ; dl_control:CONTROL|state.ps_input  ; clk      ;
+; N/A   ; None         ; 4.780 ns   ; key_in[8] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A   ; None         ; 4.774 ns   ; key_in[9] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A   ; None         ; 4.754 ns   ; key_in[0] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A   ; None         ; 4.746 ns   ; key_in[0] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A   ; None         ; 4.739 ns   ; key_in[7] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A   ; None         ; 4.732 ns   ; key_in[7] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A   ; None         ; 4.716 ns   ; key_in[2] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A   ; None         ; 4.695 ns   ; key_in[3] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A   ; None         ; 4.688 ns   ; key_in[3] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A   ; None         ; 4.670 ns   ; key_in[3] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A   ; None         ; 4.612 ns   ; enter     ; dl_control:CONTROL|state.outlock   ; clk      ;
+; N/A   ; None         ; 4.533 ns   ; key_in[2] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A   ; None         ; 4.526 ns   ; key_in[2] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A   ; None         ; 4.523 ns   ; key_in[0] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A   ; None         ; 4.508 ns   ; key_in[2] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A   ; None         ; 4.476 ns   ; key_in[8] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A   ; None         ; 4.469 ns   ; key_in[8] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A   ; None         ; 4.350 ns   ; key_in[6] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A   ; None         ; 4.340 ns   ; key_in[0] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A   ; None         ; 4.333 ns   ; key_in[0] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A   ; None         ; 4.332 ns   ; key_in[8] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A   ; None         ; 4.315 ns   ; key_in[0] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A   ; None         ; 4.227 ns   ; enter     ; dl_control:CONTROL|state.inlock    ; clk      ;
+; N/A   ; None         ; 4.209 ns   ; key_in[7] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A   ; None         ; 4.205 ns   ; start     ; dl_control:CONTROL|state.inlock    ; clk      ;
+; N/A   ; None         ; 4.127 ns   ; key_in[6] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A   ; None         ; 4.012 ns   ; enter     ; dl_control:CONTROL|cnt_clk2        ; clk      ;
+; N/A   ; None         ; 3.986 ns   ; key_in[7] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A   ; None         ; 3.886 ns   ; key_in[6] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A   ; None         ; 3.879 ns   ; key_in[6] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A   ; None         ; 3.801 ns   ; enter     ; dl_control:CONTROL|state.ps_wrong  ; clk      ;
+; N/A   ; None         ; 3.794 ns   ; start     ; dl_control:CONTROL|state.ps_input  ; clk      ;
+; N/A   ; None         ; 3.792 ns   ; ps_ch     ; dl_control:CONTROL|state.outlock   ; clk      ;
+; N/A   ; None         ; 3.791 ns   ; ps_ch     ; dl_control:CONTROL|state.ps_change ; clk      ;
+; N/A   ; None         ; 3.775 ns   ; enter     ; dl_control:CONTROL|state.ps_right  ; clk      ;
+; N/A   ; None         ; 3.745 ns   ; key_in[7] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A   ; None         ; 3.738 ns   ; key_in[7] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A   ; None         ; 3.717 ns   ; key_in[4] ; dl_coder:CODER|key_in_1[4]         ; clk      ;
+; N/A   ; None         ; 3.581 ns   ; key_in[8] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A   ; None         ; 3.572 ns   ; key_in[8] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A   ; None         ; 3.571 ns   ; key_in[8] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A   ; None         ; 3.532 ns   ; key_in[9] ; dl_coder:CODER|key_in_1[9]         ; clk      ;
+; N/A   ; None         ; 3.358 ns   ; key_in[7] ; dl_coder:CODER|key_in_1[7]         ; clk      ;
+; N/A   ; None         ; 3.255 ns   ; key_in[0] ; dl_coder:CODER|key_in_1[0]         ; clk      ;
+; N/A   ; None         ; 3.244 ns   ; key_in[8] ; dl_coder:CODER|key_in_1[8]         ; clk      ;
+; N/A   ; None         ; 3.238 ns   ; key_in[8] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A   ; None         ; 3.136 ns   ; key_in[5] ; dl_coder:CODER|key_in_1[5]         ; clk      ;
+; N/A   ; None         ; 3.129 ns   ; key_in[3] ; dl_coder:CODER|key_in_1[3]         ; clk      ;
+; N/A   ; None         ; 3.100 ns   ; key_in[6] ; dl_coder:CODER|key_in_1[6]         ; clk      ;
+; N/A   ; None         ; 3.091 ns   ; key_in[1] ; dl_coder:CODER|key_in_1[1]         ; clk      ;
+; N/A   ; None         ; 2.873 ns   ; key_in[2] ; dl_coder:CODER|key_in_1[2]         ; clk      ;
+; N/A   ; None         ; 1.713 ns   ; off_al    ; dl_control:CONTROL|state.inlock    ; clk      ;
+; N/A   ; None         ; 1.679 ns   ; off_al    ; dl_control:CONTROL|state.alarm     ; clk      ;
+; N/A   ; None         ; 0.711 ns   ; lock      ; dl_control:CONTROL|state.inlock    ; clk      ;
+; N/A   ; None         ; 0.443 ns   ; lock      ; dl_control:CONTROL|state.ps_change ; clk      ;
+; N/A   ; None         ; 0.400 ns   ; off_al    ; dl_control:CONTROL|cnt_clk2        ; clk      ;
+; N/A   ; None         ; 0.036 ns   ; lock      ; dl_control:CONTROL|state.outlock   ; clk      ;
+; N/A   ; None         ; -0.090 ns  ; off_al    ; dl_control:CONTROL|warn            ; clk      ;
++-------+--------------+------------+-----------+------------------------------------+----------+
+
+
++---------------------------------------------------------------------------------+
+; tco                                                                             ;
++-------+--------------+------------+-------------------------+------+------------+
+; Slack ; Required tco ; Actual tco ; From                    ; To   ; From Clock ;
++-------+--------------+------------+-------------------------+------+------------+
+; N/A   ; None         ; 7.193 ns   ; dl_control:CONTROL|warn ; warn ; clk        ;
+; N/A   ; None         ; 6.620 ns   ; dl_control:CONTROL|key  ; key  ; clk        ;
++-------+--------------+------------+-------------------------+------+------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; th                                                                                                  ;
++---------------+-------------+-----------+-----------+------------------------------------+----------+
+; Minimum Slack ; Required th ; Actual th ; From      ; To                                 ; To Clock ;
++---------------+-------------+-----------+-----------+------------------------------------+----------+
+; N/A           ; None        ; 0.320 ns  ; off_al    ; dl_control:CONTROL|warn            ; clk      ;
+; N/A           ; None        ; 0.194 ns  ; lock      ; dl_control:CONTROL|state.outlock   ; clk      ;
+; N/A           ; None        ; -0.170 ns ; off_al    ; dl_control:CONTROL|cnt_clk2        ; clk      ;
+; N/A           ; None        ; -0.213 ns ; lock      ; dl_control:CONTROL|state.ps_change ; clk      ;
+; N/A           ; None        ; -0.481 ns ; lock      ; dl_control:CONTROL|state.inlock    ; clk      ;
+; N/A           ; None        ; -1.449 ns ; off_al    ; dl_control:CONTROL|state.alarm     ; clk      ;
+; N/A           ; None        ; -1.483 ns ; off_al    ; dl_control:CONTROL|state.inlock    ; clk      ;
+; N/A           ; None        ; -2.643 ns ; key_in[2] ; dl_coder:CODER|key_in_1[2]         ; clk      ;
+; N/A           ; None        ; -2.861 ns ; key_in[1] ; dl_coder:CODER|key_in_1[1]         ; clk      ;
+; N/A           ; None        ; -2.870 ns ; key_in[6] ; dl_coder:CODER|key_in_1[6]         ; clk      ;
+; N/A           ; None        ; -2.899 ns ; key_in[3] ; dl_coder:CODER|key_in_1[3]         ; clk      ;
+; N/A           ; None        ; -2.906 ns ; key_in[5] ; dl_coder:CODER|key_in_1[5]         ; clk      ;
+; N/A           ; None        ; -3.008 ns ; key_in[8] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A           ; None        ; -3.014 ns ; key_in[8] ; dl_coder:CODER|key_in_1[8]         ; clk      ;
+; N/A           ; None        ; -3.025 ns ; key_in[0] ; dl_coder:CODER|key_in_1[0]         ; clk      ;
+; N/A           ; None        ; -3.128 ns ; key_in[7] ; dl_coder:CODER|key_in_1[7]         ; clk      ;
+; N/A           ; None        ; -3.288 ns ; key_in[2] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A           ; None        ; -3.291 ns ; key_in[2] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A           ; None        ; -3.302 ns ; key_in[9] ; dl_coder:CODER|key_in_1[9]         ; clk      ;
+; N/A           ; None        ; -3.341 ns ; key_in[8] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A           ; None        ; -3.342 ns ; key_in[8] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A           ; None        ; -3.351 ns ; key_in[8] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A           ; None        ; -3.408 ns ; key_in[0] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A           ; None        ; -3.464 ns ; key_in[1] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A           ; None        ; -3.487 ns ; key_in[4] ; dl_coder:CODER|key_in_1[4]         ; clk      ;
+; N/A           ; None        ; -3.508 ns ; key_in[7] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A           ; None        ; -3.515 ns ; key_in[7] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A           ; None        ; -3.545 ns ; enter     ; dl_control:CONTROL|state.ps_right  ; clk      ;
+; N/A           ; None        ; -3.561 ns ; ps_ch     ; dl_control:CONTROL|state.ps_change ; clk      ;
+; N/A           ; None        ; -3.562 ns ; ps_ch     ; dl_control:CONTROL|state.outlock   ; clk      ;
+; N/A           ; None        ; -3.564 ns ; start     ; dl_control:CONTROL|state.ps_input  ; clk      ;
+; N/A           ; None        ; -3.571 ns ; enter     ; dl_control:CONTROL|state.ps_wrong  ; clk      ;
+; N/A           ; None        ; -3.587 ns ; key_in[5] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A           ; None        ; -3.588 ns ; key_in[3] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A           ; None        ; -3.597 ns ; key_in[1] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A           ; None        ; -3.607 ns ; enter     ; dl_control:CONTROL|cnt_clk2        ; clk      ;
+; N/A           ; None        ; -3.649 ns ; key_in[6] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A           ; None        ; -3.656 ns ; key_in[6] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A           ; None        ; -3.739 ns ; key_in[8] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A           ; None        ; -3.756 ns ; key_in[7] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A           ; None        ; -3.888 ns ; key_in[9] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A           ; None        ; -3.897 ns ; key_in[6] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A           ; None        ; -3.936 ns ; key_in[0] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A           ; None        ; -3.975 ns ; start     ; dl_control:CONTROL|state.inlock    ; clk      ;
+; N/A           ; None        ; -3.979 ns ; key_in[7] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A           ; None        ; -3.997 ns ; enter     ; dl_control:CONTROL|state.inlock    ; clk      ;
+; N/A           ; None        ; -4.081 ns ; key_in[0] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A           ; None        ; -4.085 ns ; key_in[0] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A           ; None        ; -4.102 ns ; key_in[8] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A           ; None        ; -4.103 ns ; key_in[0] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A           ; None        ; -4.110 ns ; key_in[0] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A           ; None        ; -4.120 ns ; key_in[6] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A           ; None        ; -4.128 ns ; key_in[7] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A           ; None        ; -4.238 ns ; key_in[4] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A           ; None        ; -4.239 ns ; key_in[8] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A           ; None        ; -4.244 ns ; key_in[4] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A           ; None        ; -4.246 ns ; key_in[8] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A           ; None        ; -4.269 ns ; key_in[6] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A           ; None        ; -4.278 ns ; key_in[2] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A           ; None        ; -4.293 ns ; key_in[0] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A           ; None        ; -4.296 ns ; key_in[2] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A           ; None        ; -4.303 ns ; key_in[2] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A           ; None        ; -4.316 ns ; key_in[6] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A           ; None        ; -4.348 ns ; key_in[1] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A           ; None        ; -4.382 ns ; enter     ; dl_control:CONTROL|state.outlock   ; clk      ;
+; N/A           ; None        ; -4.440 ns ; key_in[3] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A           ; None        ; -4.458 ns ; key_in[3] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A           ; None        ; -4.465 ns ; key_in[3] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A           ; None        ; -4.465 ns ; key_in[5] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A           ; None        ; -4.486 ns ; key_in[2] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A           ; None        ; -4.496 ns ; key_in[8] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A           ; None        ; -4.502 ns ; key_in[7] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A           ; None        ; -4.509 ns ; key_in[7] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A           ; None        ; -4.516 ns ; key_in[0] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A           ; None        ; -4.524 ns ; key_in[0] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A           ; None        ; -4.544 ns ; key_in[9] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A           ; None        ; -4.557 ns ; enter     ; dl_control:CONTROL|state.ps_input  ; clk      ;
+; N/A           ; None        ; -4.562 ns ; key_in[9] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A           ; None        ; -4.563 ns ; key_in[7] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A           ; None        ; -4.569 ns ; key_in[9] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A           ; None        ; -4.584 ns ; key_in[2] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A           ; None        ; -4.619 ns ; key_in[9] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A           ; None        ; -4.630 ns ; key_in[0] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A           ; None        ; -4.638 ns ; enter     ; dl_control:CONTROL|state.alarm     ; clk      ;
+; N/A           ; None        ; -4.643 ns ; key_in[3] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A           ; None        ; -4.643 ns ; key_in[6] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A           ; None        ; -4.645 ns ; key_in[8] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A           ; None        ; -4.646 ns ; key_in[8] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A           ; None        ; -4.648 ns ; key_in[3] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A           ; None        ; -4.650 ns ; key_in[6] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A           ; None        ; -4.701 ns ; key_in[8] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A           ; None        ; -4.709 ns ; key_in[2] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A           ; None        ; -4.712 ns ; key_in[7] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A           ; None        ; -4.717 ns ; key_in[2] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A           ; None        ; -4.718 ns ; key_in[1] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A           ; None        ; -4.736 ns ; key_in[1] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A           ; None        ; -4.743 ns ; key_in[1] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A           ; None        ; -4.746 ns ; key_in[3] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A           ; None        ; -4.752 ns ; key_in[9] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A           ; None        ; -4.766 ns ; key_in[9] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A           ; None        ; -4.785 ns ; key_in[2] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A           ; None        ; -4.834 ns ; key_in[5] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A           ; None        ; -4.843 ns ; key_in[5] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A           ; None        ; -4.861 ns ; key_in[5] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A           ; None        ; -4.865 ns ; enter     ; dl_control:CONTROL|cnt_clr2        ; clk      ;
+; N/A           ; None        ; -4.868 ns ; key_in[6] ; dl_coder:CODER|code_out[1]         ; clk      ;
+; N/A           ; None        ; -4.868 ns ; key_in[5] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A           ; None        ; -4.871 ns ; key_in[3] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A           ; None        ; -4.879 ns ; key_in[3] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A           ; None        ; -4.926 ns ; key_in[1] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A           ; None        ; -4.933 ns ; key_in[7] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A           ; None        ; -4.937 ns ; enter     ; dl_control:CONTROL|cnt_clr         ; clk      ;
+; N/A           ; None        ; -4.939 ns ; enter     ; dl_control:CONTROL|code_en         ; clk      ;
+; N/A           ; None        ; -4.964 ns ; key_in[7] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A           ; None        ; -4.975 ns ; key_in[9] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A           ; None        ; -4.983 ns ; key_in[9] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A           ; None        ; -4.988 ns ; key_in[0] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A           ; None        ; -5.016 ns ; key_in[6] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A           ; None        ; -5.051 ns ; key_in[5] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A           ; None        ; -5.060 ns ; key_in[8] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A           ; None        ; -5.074 ns ; key_in[6] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A           ; None        ; -5.082 ns ; key_in[8] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A           ; None        ; -5.105 ns ; key_in[6] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A           ; None        ; -5.149 ns ; key_in[1] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A           ; None        ; -5.151 ns ; key_in[7] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A           ; None        ; -5.157 ns ; key_in[1] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A           ; None        ; -5.181 ns ; key_in[2] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A           ; None        ; -5.228 ns ; key_in[4] ; dl_coder:CODER|key_in_2[0]         ; clk      ;
+; N/A           ; None        ; -5.246 ns ; key_in[4] ; dl_coder:CODER|key_in_2[2]         ; clk      ;
+; N/A           ; None        ; -5.253 ns ; key_in[4] ; dl_coder:CODER|key_in_2[3]         ; clk      ;
+; N/A           ; None        ; -5.274 ns ; key_in[5] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A           ; None        ; -5.282 ns ; key_in[5] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A           ; None        ; -5.295 ns ; key_in[0] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A           ; None        ; -5.324 ns ; key_in[7] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A           ; None        ; -5.341 ns ; key_in[0] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A           ; None        ; -5.343 ns ; key_in[3] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A           ; None        ; -5.345 ns ; key_in[7] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A           ; None        ; -5.345 ns ; key_in[9] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A           ; None        ; -5.351 ns ; key_in[0] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A           ; None        ; -5.436 ns ; key_in[4] ; dl_coder:CODER|key_in_2[4]         ; clk      ;
+; N/A           ; None        ; -5.447 ns ; key_in[9] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A           ; None        ; -5.465 ns ; key_in[6] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A           ; None        ; -5.486 ns ; key_in[6] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A           ; None        ; -5.488 ns ; key_in[2] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A           ; None        ; -5.503 ns ; key_in[1] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A           ; None        ; -5.534 ns ; key_in[2] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A           ; None        ; -5.534 ns ; key_in[4] ; dl_coder:CODER|code_out[3]         ; clk      ;
+; N/A           ; None        ; -5.544 ns ; key_in[2] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A           ; None        ; -5.616 ns ; key_in[4] ; dl_coder:CODER|code_out[2]         ; clk      ;
+; N/A           ; None        ; -5.620 ns ; key_in[5] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A           ; None        ; -5.621 ns ; key_in[1] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A           ; None        ; -5.629 ns ; key_in[3] ; dl_coder:CODER|code_out[0]         ; clk      ;
+; N/A           ; None        ; -5.650 ns ; key_in[3] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A           ; None        ; -5.659 ns ; key_in[4] ; dl_coder:CODER|key_in_2[6]         ; clk      ;
+; N/A           ; None        ; -5.667 ns ; key_in[4] ; dl_coder:CODER|key_in_2[7]         ; clk      ;
+; N/A           ; None        ; -5.696 ns ; key_in[3] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A           ; None        ; -5.706 ns ; key_in[3] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A           ; None        ; -5.746 ns ; key_in[5] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A           ; None        ; -5.754 ns ; key_in[9] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A           ; None        ; -5.800 ns ; key_in[9] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A           ; None        ; -5.810 ns ; key_in[9] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A           ; None        ; -5.928 ns ; key_in[1] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A           ; None        ; -5.974 ns ; key_in[1] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A           ; None        ; -5.984 ns ; key_in[1] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A           ; None        ; -6.053 ns ; key_in[5] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A           ; None        ; -6.099 ns ; key_in[5] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A           ; None        ; -6.109 ns ; key_in[5] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
+; N/A           ; None        ; -6.131 ns ; key_in[4] ; dl_coder:CODER|key_in_2[1]         ; clk      ;
+; N/A           ; None        ; -6.438 ns ; key_in[4] ; dl_coder:CODER|key_in_2[8]         ; clk      ;
+; N/A           ; None        ; -6.484 ns ; key_in[4] ; dl_coder:CODER|key_in_2[5]         ; clk      ;
+; N/A           ; None        ; -6.494 ns ; key_in[4] ; dl_coder:CODER|key_in_2[9]         ; clk      ;
++---------------+-------------+-----------+-----------+------------------------------------+----------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Classic Timing Analyzer
+    Info: Version 7.2 Build 151 09/26/2007 SJ Full Version
+    Info: Processing started: Fri Dec 26 20:36:25 2008
+Info: Command: quartus_tan --read_settings_files=off --write_settings_files=off dlock -c dlock --timing_analysis_only
+Warning: Found pins functioning as undefined clocks and/or memory enables
+    Info: Assuming node "clk" is an undefined clock
+Warning: Found 27 node(s) in clock paths which may be acting as ripple and/or gated clocks -- node(s) analyzed as buffer(s) resulting in clock skew
+    Info: Detected ripple clock "dl_control:CONTROL|cnt_clk2" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_1[0]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_2[1]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_2[0]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_1[1]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_1[7]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_2[7]" as buffer
+    Info: Detected gated clock "dl_coder:CODER|Equal0~128" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_2[9]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_1[9]" as buffer
+    Info: Detected gated clock "dl_coder:CODER|Equal0~129" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_1[6]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_2[6]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_1[2]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_2[2]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_1[5]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_2[5]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_1[3]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_2[3]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_2[4]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_2[8]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_1[8]" as buffer
+    Info: Detected ripple clock "dl_coder:CODER|key_in_1[4]" as buffer
+    Info: Detected gated clock "dl_coder:CODER|Equal0~130" as buffer
+    Info: Detected gated clock "dl_coder:CODER|Equal0~132" as buffer
+    Info: Detected gated clock "dl_coder:CODER|Equal0~131" as buffer
+    Info: Detected gated clock "dl_coder:CODER|Equal0~133" as buffer
+Info: Clock "clk" has Internal fmax of 62.28 MHz between source register "dl_counter:CONUTER|cnt[1]" and destination register "dl_reg:REG|m0[1]" (period= 16.056 ns)
+    Info: + Longest register to register delay is 1.947 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X21_Y31_N9; Fanout = 10; REG Node = 'dl_counter:CONUTER|cnt[1]'
+        Info: 2: + IC(0.327 ns) + CELL(0.275 ns) = 0.602 ns; Loc. = LCCOMB_X21_Y31_N16; Fanout = 4; COMB Node = 'dl_reg:REG|m0[3]~37'
+        Info: 3: + IC(0.685 ns) + CELL(0.660 ns) = 1.947 ns; Loc. = LCFF_X20_Y30_N1; Fanout = 1; REG Node = 'dl_reg:REG|m0[1]'
+        Info: Total cell delay = 0.935 ns ( 48.02 % )
+        Info: Total interconnect delay = 1.012 ns ( 51.98 % )
+    Info: - Smallest clock skew is -5.867 ns
+        Info: + Shortest clock path from clock "clk" to destination register is 2.671 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_P2; Fanout = 22; CLK Node = 'clk'
+            Info: 2: + IC(0.118 ns) + CELL(0.000 ns) = 1.117 ns; Loc. = CLKCTRL_G3; Fanout = 33; COMB Node = 'clk~clkctrl'
+            Info: 3: + IC(1.017 ns) + CELL(0.537 ns) = 2.671 ns; Loc. = LCFF_X20_Y30_N1; Fanout = 1; REG Node = 'dl_reg:REG|m0[1]'
+            Info: Total cell delay = 1.536 ns ( 57.51 % )
+            Info: Total interconnect delay = 1.135 ns ( 42.49 % )
+        Info: - Longest clock path from clock "clk" to source register is 8.538 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_P2; Fanout = 22; CLK Node = 'clk'
+            Info: 2: + IC(1.739 ns) + CELL(0.787 ns) = 3.525 ns; Loc. = LCFF_X22_Y30_N25; Fanout = 2; REG Node = 'dl_coder:CODER|key_in_1[1]'
+            Info: 3: + IC(0.328 ns) + CELL(0.438 ns) = 4.291 ns; Loc. = LCCOMB_X22_Y30_N6; Fanout = 1; COMB Node = 'dl_coder:CODER|Equal0~128'
+            Info: 4: + IC(0.242 ns) + CELL(0.150 ns) = 4.683 ns; Loc. = LCCOMB_X22_Y30_N0; Fanout = 1; COMB Node = 'dl_coder:CODER|Equal0~130'
+            Info: 5: + IC(0.663 ns) + CELL(0.150 ns) = 5.496 ns; Loc. = LCCOMB_X21_Y31_N0; Fanout = 9; COMB Node = 'dl_coder:CODER|Equal0'
+            Info: 6: + IC(1.489 ns) + CELL(0.000 ns) = 6.985 ns; Loc. = CLKCTRL_G10; Fanout = 3; COMB Node = 'dl_coder:CODER|Equal0~clkctrl'
+            Info: 7: + IC(1.016 ns) + CELL(0.537 ns) = 8.538 ns; Loc. = LCFF_X21_Y31_N9; Fanout = 10; REG Node = 'dl_counter:CONUTER|cnt[1]'
+            Info: Total cell delay = 3.061 ns ( 35.85 % )
+            Info: Total interconnect delay = 5.477 ns ( 64.15 % )
+    Info: + Micro clock to output delay of source is 0.250 ns
+    Info: + Micro setup delay of destination is -0.036 ns
+    Info: Delay path is controlled by inverted clocks -- if clock duty cycle is 50%, fmax is divided by two
+Warning: Circuit may not operate. Detected 4 non-operational path(s) clocked by clock "clk" with clock skew larger than data delay. See Compilation Report for details.
+Info: Found hold time violation between source  pin or register "dl_counter:CONUTER|cnt[0]" and destination pin or register "dl_counter:CONUTER|cnt[0]" for clock "clk" (Hold time is 444 ps)
+    Info: + Largest clock skew is 0.835 ns
+        Info: + Longest clock path from clock "clk" to destination register is 8.538 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_P2; Fanout = 22; CLK Node = 'clk'
+            Info: 2: + IC(1.739 ns) + CELL(0.787 ns) = 3.525 ns; Loc. = LCFF_X22_Y30_N25; Fanout = 2; REG Node = 'dl_coder:CODER|key_in_1[1]'
+            Info: 3: + IC(0.328 ns) + CELL(0.438 ns) = 4.291 ns; Loc. = LCCOMB_X22_Y30_N6; Fanout = 1; COMB Node = 'dl_coder:CODER|Equal0~128'
+            Info: 4: + IC(0.242 ns) + CELL(0.150 ns) = 4.683 ns; Loc. = LCCOMB_X22_Y30_N0; Fanout = 1; COMB Node = 'dl_coder:CODER|Equal0~130'
+            Info: 5: + IC(0.663 ns) + CELL(0.150 ns) = 5.496 ns; Loc. = LCCOMB_X21_Y31_N0; Fanout = 9; COMB Node = 'dl_coder:CODER|Equal0'
+            Info: 6: + IC(1.489 ns) + CELL(0.000 ns) = 6.985 ns; Loc. = CLKCTRL_G10; Fanout = 3; COMB Node = 'dl_coder:CODER|Equal0~clkctrl'
+            Info: 7: + IC(1.016 ns) + CELL(0.537 ns) = 8.538 ns; Loc. = LCFF_X21_Y31_N29; Fanout = 11; REG Node = 'dl_counter:CONUTER|cnt[0]'
+            Info: Total cell delay = 3.061 ns ( 35.85 % )
+            Info: Total interconnect delay = 5.477 ns ( 64.15 % )
+        Info: - Shortest clock path from clock "clk" to source register is 7.703 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_P2; Fanout = 22; CLK Node = 'clk'
+            Info: 2: + IC(1.739 ns) + CELL(0.787 ns) = 3.525 ns; Loc. = LCFF_X22_Y30_N1; Fanout = 1; REG Node = 'dl_coder:CODER|key_in_2[9]'
+            Info: 3: + IC(0.000 ns) + CELL(0.323 ns) = 3.848 ns; Loc. = LCCOMB_X22_Y30_N0; Fanout = 1; COMB Node = 'dl_coder:CODER|Equal0~130'
+            Info: 4: + IC(0.663 ns) + CELL(0.150 ns) = 4.661 ns; Loc. = LCCOMB_X21_Y31_N0; Fanout = 9; COMB Node = 'dl_coder:CODER|Equal0'
+            Info: 5: + IC(1.489 ns) + CELL(0.000 ns) = 6.150 ns; Loc. = CLKCTRL_G10; Fanout = 3; COMB Node = 'dl_coder:CODER|Equal0~clkctrl'
+            Info: 6: + IC(1.016 ns) + CELL(0.537 ns) = 7.703 ns; Loc. = LCFF_X21_Y31_N29; Fanout = 11; REG Node = 'dl_counter:CONUTER|cnt[0]'
+            Info: Total cell delay = 2.796 ns ( 36.30 % )
+            Info: Total interconnect delay = 4.907 ns ( 63.70 % )
+    Info: - Micro clock to output delay of source is 0.250 ns
+    Info: - Shortest register to register delay is 0.407 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X21_Y31_N29; Fanout = 11; REG Node = 'dl_counter:CONUTER|cnt[0]'
+        Info: 2: + IC(0.000 ns) + CELL(0.323 ns) = 0.323 ns; Loc. = LCCOMB_X21_Y31_N28; Fanout = 1; COMB Node = 'dl_counter:CONUTER|cnt[0]~66'
+        Info: 3: + IC(0.000 ns) + CELL(0.084 ns) = 0.407 ns; Loc. = LCFF_X21_Y31_N29; Fanout = 11; REG Node = 'dl_counter:CONUTER|cnt[0]'
+        Info: Total cell delay = 0.407 ns ( 100.00 % )
+    Info: + Micro hold delay of destination is 0.266 ns
+Info: tsu for register "dl_coder:CODER|code_out[1]" (data pin = "key_in[4]", clock pin = "clk") is 6.757 ns
+    Info: + Longest pin to register delay is 9.464 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.840 ns) = 0.840 ns; Loc. = PIN_AC10; Fanout = 5; PIN Node = 'key_in[4]'
+        Info: 2: + IC(5.856 ns) + CELL(0.398 ns) = 7.094 ns; Loc. = LCCOMB_X20_Y30_N26; Fanout = 2; COMB Node = 'dl_coder:CODER|Equal2~64'
+        Info: 3: + IC(0.255 ns) + CELL(0.150 ns) = 7.499 ns; Loc. = LCCOMB_X20_Y30_N14; Fanout = 11; COMB Node = 'dl_coder:CODER|Equal1~56'
+        Info: 4: + IC(0.417 ns) + CELL(0.438 ns) = 8.354 ns; Loc. = LCCOMB_X21_Y30_N12; Fanout = 4; COMB Node = 'dl_coder:CODER|U2~0'
+        Info: 5: + IC(0.450 ns) + CELL(0.660 ns) = 9.464 ns; Loc. = LCFF_X20_Y30_N17; Fanout = 4; REG Node = 'dl_coder:CODER|code_out[1]'
+        Info: Total cell delay = 2.486 ns ( 26.27 % )
+        Info: Total interconnect delay = 6.978 ns ( 73.73 % )
+    Info: + Micro setup delay of destination is -0.036 ns
+    Info: - Shortest clock path from clock "clk" to destination register is 2.671 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_P2; Fanout = 22; CLK Node = 'clk'
+        Info: 2: + IC(0.118 ns) + CELL(0.000 ns) = 1.117 ns; Loc. = CLKCTRL_G3; Fanout = 33; COMB Node = 'clk~clkctrl'
+        Info: 3: + IC(1.017 ns) + CELL(0.537 ns) = 2.671 ns; Loc. = LCFF_X20_Y30_N17; Fanout = 4; REG Node = 'dl_coder:CODER|code_out[1]'
+        Info: Total cell delay = 1.536 ns ( 57.51 % )
+        Info: Total interconnect delay = 1.135 ns ( 42.49 % )
+Info: tco from clock "clk" to destination pin "warn" through register "dl_control:CONTROL|warn" is 7.193 ns
+    Info: + Longest clock path from clock "clk" to source register is 2.674 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_P2; Fanout = 22; CLK Node = 'clk'
+        Info: 2: + IC(0.118 ns) + CELL(0.000 ns) = 1.117 ns; Loc. = CLKCTRL_G3; Fanout = 33; COMB Node = 'clk~clkctrl'
+        Info: 3: + IC(1.020 ns) + CELL(0.537 ns) = 2.674 ns; Loc. = LCFF_X19_Y31_N29; Fanout = 2; REG Node = 'dl_control:CONTROL|warn'
+        Info: Total cell delay = 1.536 ns ( 57.44 % )
+        Info: Total interconnect delay = 1.138 ns ( 42.56 % )
+    Info: + Micro clock to output delay of source is 0.250 ns
+    Info: + Longest register to pin delay is 4.269 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LCFF_X19_Y31_N29; Fanout = 2; REG Node = 'dl_control:CONTROL|warn'
+        Info: 2: + IC(1.657 ns) + CELL(2.612 ns) = 4.269 ns; Loc. = PIN_J8; Fanout = 0; PIN Node = 'warn'
+        Info: Total cell delay = 2.612 ns ( 61.19 % )
+        Info: Total interconnect delay = 1.657 ns ( 38.81 % )
+Info: th for register "dl_control:CONTROL|warn" (data pin = "off_al", clock pin = "clk") is 0.320 ns
+    Info: + Longest clock path from clock "clk" to destination register is 2.674 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.999 ns) = 0.999 ns; Loc. = PIN_P2; Fanout = 22; CLK Node = 'clk'
+        Info: 2: + IC(0.118 ns) + CELL(0.000 ns) = 1.117 ns; Loc. = CLKCTRL_G3; Fanout = 33; COMB Node = 'clk~clkctrl'
+        Info: 3: + IC(1.020 ns) + CELL(0.537 ns) = 2.674 ns; Loc. = LCFF_X19_Y31_N29; Fanout = 2; REG Node = 'dl_control:CONTROL|warn'
+        Info: Total cell delay = 1.536 ns ( 57.44 % )
+        Info: Total interconnect delay = 1.138 ns ( 42.56 % )
+    Info: + Micro hold delay of destination is 0.266 ns
+    Info: - Shortest pin to register delay is 2.620 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.979 ns) = 0.979 ns; Loc. = PIN_C13; Fanout = 4; PIN Node = 'off_al'
+        Info: 2: + IC(1.407 ns) + CELL(0.150 ns) = 2.536 ns; Loc. = LCCOMB_X19_Y31_N28; Fanout = 1; COMB Node = 'dl_control:CONTROL|Selector11~33'
+        Info: 3: + IC(0.000 ns) + CELL(0.084 ns) = 2.620 ns; Loc. = LCFF_X19_Y31_N29; Fanout = 2; REG Node = 'dl_control:CONTROL|warn'
+        Info: Total cell delay = 1.213 ns ( 46.30 % )
+        Info: Total interconnect delay = 1.407 ns ( 53.70 % )
+Info: Quartus II Classic Timing Analyzer was successful. 0 errors, 3 warnings
+    Info: Allocated 116 megabytes of memory during processing
+    Info: Processing ended: Fri Dec 26 20:36:26 2008
+    Info: Elapsed time: 00:00:01
+
+
